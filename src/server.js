@@ -9,7 +9,7 @@ const server = express()
 
 server.use(bodyParser.urlencoded({extended:false}))
 server.use(bodyParser.json())
-server.use("/labschool",routes)
+server.use("/blackschool",routes)
 server.use(cors())
 
 server.get("/teste",(req,res) => res.send("Rota funcionando!"))
