@@ -2,15 +2,16 @@ const database = require('../database')
 
 module.exports = {
 
-    searchUser: (senha, email) => {
+    searchUserAccount: (senha, email) => {
         return new Promise(
-            (acceptted, rejected) => {
-                database.query(`SELECT * FROM usuario WHERE senha = '${senha}' and email = '${email}'`, (error, result) => {
+            (accepted, rejected) => {
+                database.query(`SELECT * FROM usuario WHERE senha = '${senha}' and email = '${email}'`, 
+                    (error, result) => {
                     if (error) {
                         rejected(error)
                         return
                     }
-                    acceptted(result)
+                    accepted(result)
                 })
             }
         )
@@ -33,7 +34,7 @@ module.exports = {
 
     },
 
-    updateUser: (senha, email) => {
+    updatePassUser: (email, senha) => {
         return new Promise(
             (accepted,rejected) => {
                 database.query(`UPDATE usuario SET senha = '${senha}' WHERE email = '${email}'`,

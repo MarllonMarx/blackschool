@@ -1,19 +1,20 @@
 const { response } = require("express");
-const UserService = require("../services/UserServices");
+const UserServices = require("../services/UserServices");
 
 module.exports = {
 
     readyUser: async (request, response) => {
         let json = { error: "", result: [] }
 
-        let user = await UserServices.searchUser()
+        let senha = request.body.senha
+        let email = request.body.email
+
+        let user = await UserServices.searchUserAccount(senha,email)
 
         for (let i in user) {
             json.result.push({
-                id: user[i].id,
-                nome_de_usuario: user[i].nome_de_usuario,
-                senha: user[i].senha,
-                email: user[i].email
+                email: user[i].email,
+                senha: user[i].senha
             })
         }
         response.header("Access-Control-Allow-Origin", "*")
@@ -36,7 +37,7 @@ module.exports = {
 
         if (nome_de_usuario && senha && email) {
 
-            let user = await UserService.createUser(nome_de_usuario, senha, email)
+            let user = await UserServices.createUser(nome_de_usuario, senha, email)
 
             json.result = {
                 id: user.insertId,
@@ -55,21 +56,21 @@ module.exports = {
 
     },
 
-    updateUser: async (request, response) => {
+    updatePassUser: async (request, response) => {
 
         let json = { error:"",result: {}}
 
         let senha = request.body.senha
-        let email = request.body.email
+        let email = request.params.email
         
-        if(i && emaild){
+        if(email){
 
-            await UserService.updateUser( id, nome_de_usuario, email,senha)
+            await UserServices.updatePassUser(email,senha)
 
-            json.result = {id, nome_de_usuario,senha}
+            json.result = {email,senha}
 
         }else{
-            json.error = "Error ID"
+            json.error = "E-mail não encontrado"
 
         }
         
