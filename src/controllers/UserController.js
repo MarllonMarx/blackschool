@@ -64,13 +64,11 @@ module.exports = {
         
         if(i && emaild){
 
-            await UserService.updateUser( id, nome_de_usuario, , emailsenha)
+            await UserService.updateUser( id, nome_de_usuario, email,senha)
 
             json.result = {id, nome_de_usuario,senha}
 
-
-        }else{,
-            email
+        }else{
             json.error = "Error ID"
 
         }
