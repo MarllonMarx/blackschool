@@ -20,7 +20,7 @@ module.exports = {
 
         return new Promise(
             (accepted, rejected) => {
-                database.query(`INSERT INTO turmas (nome, periodo_letivo) VALUES ('${nome}', '${periodo_letivo}')`,
+                database.query(`INSERT INTO turmas (nome,periodo_letivo) VALUES ('${nome}', '${periodo_letivo}')`,
                     (error, result) => {
                         if (error) {
                             rejected(error)

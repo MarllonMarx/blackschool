@@ -34,14 +34,13 @@ module.exports = {
 
         if (nome && periodo_letivo) {
 
-            let turmas = await TurmaServices.createTurmas(nome, periodo_letivo)
+            let turmas = await TurmaServices.createTurmas(nome,periodo_letivo)
 
             json.result = {
                 id: turmas.insertId,
                 nome,
                 periodo_letivo
             }
-
 
         } else {
             json.error = "Campos imcompletos!"
